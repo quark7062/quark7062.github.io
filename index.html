@@ -1,0 +1,1603 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推特小小绘 - 原创影像_记录真实生活的视频品牌</title>
+<meta name="description" content="推特小小绘品牌官方网站，专注原创生活影像与创作社区，为创作者与用户提供高品质内容生态与真实温暖的记录平台。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1f2e'/%3E%3Cpath d='M26 20 L44 32 L26 44 Z' fill='%23ff5a5f'/%3E%3C/svg%3E">
+<style>
+:root{
+  --tsxh-bg:#f6f4f0;
+  --tsxh-ink:#1d2130;
+  --tsxh-ink-soft:#4a5063;
+  --tsxh-card:#ffffff;
+  --tsxh-accent:#ff5a5f;
+  --tsxh-accent-deep:#e04348;
+  --tsxh-amber:#ffb35c;
+  --tsxh-line:#e6e1d9;
+  --tsxh-shadow:0 10px 30px rgba(29,33,48,.08);
+  --tsxh-shadow-lg:0 18px 50px rgba(29,33,48,.14);
+  --tsxh-radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  background:var(--tsxh-bg);
+  color:var(--tsxh-ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+
+/* ---------- sticky wrapper ---------- */
+.tsxh-sticky-head{position:sticky;top:0;z-index:120}
+
+/* ---------- announcement bar ---------- */
+.tsxh-announce{
+  background:linear-gradient(90deg,#1d2130,#2b3247 60%,#3a2a33);
+  color:#f4efe8;
+  font-size:13px;
+  overflow:hidden;
+  position:relative;
+}
+.tsxh-announce-inner{
+  max-width:1240px;margin:0 auto;
+  padding:8px 20px;
+  display:flex;align-items:center;gap:14px;
+}
+.tsxh-announce-badge{
+  flex:none;
+  background:var(--tsxh-accent);
+  color:#fff;font-size:11px;font-weight:700;
+  padding:2px 8px;border-radius:6px;letter-spacing:.06em;
+}
+.tsxh-announce-track{flex:1;overflow:hidden;white-space:nowrap;position:relative;height:22px}
+.tsxh-announce-list{position:absolute;inset:0;display:flex;align-items:center;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.tsxh-announce-list li{min-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#e7e2da}
+.tsxh-announce-list li b{color:var(--tsxh-amber);font-weight:600}
+.tsxh-announce-more{flex:none;font-size:12px;color:#bcb5ab;border-bottom:1px dashed #6b6459;padding-bottom:1px}
+.tsxh-announce-more:hover{color:var(--tsxh-amber);border-color:var(--tsxh-amber)}
+
+/* ---------- header ---------- */
+.tsxh-header{
+  background:rgba(246,244,240,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--tsxh-line);
+  transition:box-shadow .3s;
+}
+.tsxh-header.scrolled{box-shadow:0 6px 24px rgba(29,33,48,.08)}
+.tsxh-header-inner{
+  max-width:1240px;margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;gap:22px;
+}
+.tsxh-logo{display:flex;align-items:center;gap:10px;flex:none}
+.tsxh-logo-mark{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(140deg,#1d2130,#3a2a33);
+  display:grid;place-items:center;position:relative;overflow:hidden;
+}
+.tsxh-logo-mark::after{
+  content:"";width:0;height:0;
+  border-left:12px solid var(--tsxh-accent);
+  border-top:8px solid transparent;
+  border-bottom:8px solid transparent;
+  margin-left:3px;
+}
+.tsxh-logo-text{display:flex;flex-direction:column;line-height:1.2}
+.tsxh-logo-text strong{font-size:17px;letter-spacing:.02em}
+.tsxh-logo-text span{font-size:10.5px;color:var(--tsxh-ink-soft);letter-spacing:.18em;text-transform:uppercase}
+
+.tsxh-nav{display:flex;gap:4px;margin-left:6px;flex:1}
+.tsxh-nav a{
+  padding:7px 13px;border-radius:999px;font-size:14.5px;
+  color:var(--tsxh-ink-soft);transition:.25s;white-space:nowrap;
+}
+.tsxh-nav a:hover,.tsxh-nav a.is-active{background:#fff;color:var(--tsxh-ink);box-shadow:0 2px 10px rgba(29,33,48,.07)}
+
+.tsxh-header-actions{display:flex;align-items:center;gap:10px;flex:none}
+.tsxh-search{
+  display:flex;align-items:center;gap:6px;
+  background:#fff;border:1px solid var(--tsxh-line);
+  border-radius:999px;padding:6px 6px 6px 14px;
+  transition:.25s;width:212px;
+}
+.tsxh-search:focus-within{border-color:var(--tsxh-accent);box-shadow:0 0 0 3px rgba(255,90,95,.13);width:250px}
+.tsxh-search input{
+  border:none;outline:none;background:none;font-size:13.5px;width:100%;color:var(--tsxh-ink);
+}
+.tsxh-search input::placeholder{color:#a9a294}
+.tsxh-search-btn{
+  flex:none;width:30px;height:30px;border-radius:50%;
+  background:var(--tsxh-ink);color:#fff;display:grid;place-items:center;font-size:13px;
+  transition:.25s;
+}
+.tsxh-search-btn:hover{background:var(--tsxh-accent)}
+.tsxh-btn-ghost{
+  font-size:14px;padding:8px 16px;border-radius:999px;
+  border:1px solid var(--tsxh-line);background:#fff;transition:.25s;
+}
+.tsxh-btn-ghost:hover{border-color:var(--tsxh-ink);transform:translateY(-1px)}
+.tsxh-burger{
+  display:none;width:40px;height:40px;border-radius:11px;
+  background:#fff;border:1px solid var(--tsxh-line);
+  flex-direction:column;justify-content:center;align-items:center;gap:5px;
+}
+.tsxh-burger span{width:18px;height:2px;background:var(--tsxh-ink);border-radius:2px;transition:.3s}
+.tsxh-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.tsxh-burger.open span:nth-child(2){opacity:0}
+.tsxh-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.tsxh-mobile-nav{
+  display:none;flex-direction:column;gap:2px;
+  max-width:1240px;margin:0 auto;padding:0 20px 16px;
+}
+.tsxh-mobile-nav.open{display:flex}
+.tsxh-mobile-nav a{
+  padding:12px 14px;border-radius:12px;font-size:15px;background:#fff;
+  border:1px solid var(--tsxh-line);
+}
+
+/* ---------- generic section ---------- */
+.tsxh-section{max-width:1240px;margin:0 auto;padding:74px 20px}
+.tsxh-section-head{margin-bottom:34px;max-width:760px}
+.tsxh-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;letter-spacing:.18em;color:var(--tsxh-accent-deep);
+  font-weight:700;text-transform:uppercase;margin-bottom:12px;
+}
+.tsxh-eyebrow::before{content:"";width:22px;height:2px;background:var(--tsxh-accent);border-radius:2px}
+.tsxh-h2{font-size:clamp(24px,3.4vw,34px);line-height:1.3;letter-spacing:-.01em;font-weight:800}
+.tsxh-h2 em{font-style:normal;color:var(--tsxh-accent)}
+.tsxh-lead{margin-top:12px;color:var(--tsxh-ink-soft);font-size:15px}
+
+/* ---------- hero ---------- */
+.tsxh-hero{
+  max-width:1240px;margin:0 auto;padding:52px 20px 20px;
+  display:grid;grid-template-columns:1.05fr 1fr;gap:52px;align-items:center;
+}
+.tsxh-hero-copy h1{
+  font-size:clamp(34px,5.2vw,58px);
+  line-height:1.1;font-weight:900;letter-spacing:-.02em;margin:14px 0 18px;
+}
+.tsxh-hero-copy h1 .tsxh-accent{color:var(--tsxh-accent)}
+.tsxh-pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.tsxh-pill{
+  font-size:12.5px;padding:4px 12px;border-radius:999px;
+  background:#fff;border:1px solid var(--tsxh-line);color:var(--tsxh-ink-soft);
+}
+.tsxh-pill.is-hot{background:#1d2130;color:#fff;border-color:#1d2130}
+.tsxh-hero-desc{color:var(--tsxh-ink-soft);font-size:15.5px;max-width:540px}
+.tsxh-hero-desc b{color:var(--tsxh-ink)}
+.tsxh-hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.tsxh-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:999px;font-size:14.5px;font-weight:600;
+  transition:.25s;
+}
+.tsxh-btn-primary{background:var(--tsxh-ink);color:#fff}
+.tsxh-btn-primary:hover{background:var(--tsxh-accent);transform:translateY(-2px);box-shadow:0 12px 26px rgba(255,90,95,.3)}
+.tsxh-btn-line{background:#fff;border:1px solid var(--tsxh-line)}
+.tsxh-btn-line:hover{border-color:var(--tsxh-ink);transform:translateY(-2px)}
+.tsxh-stats{display:flex;gap:30px;margin-top:36px;flex-wrap:wrap}
+.tsxh-stat strong{display:block;font-size:26px;font-weight:800;letter-spacing:-.01em}
+.tsxh-stat strong i{font-style:normal;color:var(--tsxh-accent)}
+.tsxh-stat span{font-size:12.5px;color:var(--tsxh-ink-soft)}
+
+/* hero visual */
+.tsxh-hero-visual{position:relative}
+.tsxh-hero-frame{
+  position:relative;border-radius:26px;overflow:hidden;
+  box-shadow:var(--tsxh-shadow-lg);aspect-ratio:16/11;background:#1d2130;
+}
+.tsxh-hero-frame img{width:100%;height:100%;object-fit:cover}
+.tsxh-hero-play{
+  position:absolute;inset:0;display:grid;place-items:center;
+}
+.tsxh-hero-play button{
+  width:78px;height:78px;border-radius:50%;
+  background:rgba(255,255,255,.92);display:grid;place-items:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.28);transition:.3s;
+}
+.tsxh-hero-play button:hover{transform:scale(1.08);background:var(--tsxh-accent)}
+.tsxh-hero-play button::after{
+  content:"";border-left:22px solid #1d2130;
+  border-top:13px solid transparent;border-bottom:13px solid transparent;
+  margin-left:6px;
+}
+.tsxh-hero-play button:hover::after{border-left-color:#fff}
+.tsxh-hero-tag{
+  position:absolute;left:16px;top:16px;
+  background:rgba(29,33,48,.78);color:#fff;font-size:12px;
+  padding:5px 12px;border-radius:999px;backdrop-filter:blur(6px);
+}
+.tsxh-hero-float{
+  position:absolute;right:-16px;bottom:-22px;
+  background:#fff;border-radius:16px;padding:14px 18px;
+  box-shadow:var(--tsxh-shadow-lg);font-size:12.5px;color:var(--tsxh-ink-soft);
+  max-width:220px;
+}
+.tsxh-hero-float b{display:block;color:var(--tsxh-ink);font-size:14px;margin-bottom:2px}
+
+/* ---------- intro / analysis ---------- */
+.tsxh-intro{
+  background:#fff;border-top:1px solid var(--tsxh-line);border-bottom:1px solid var(--tsxh-line);
+}
+.tsxh-intro-inner{max-width:1240px;margin:0 auto;padding:70px 20px}
+.tsxh-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start}
+.tsxh-intro-grid p{color:var(--tsxh-ink-soft);font-size:15px;margin-bottom:16px}
+.tsxh-intro-grid p b{color:var(--tsxh-ink)}
+.tsxh-intro-side{
+  background:var(--tsxh-bg);border-radius:var(--tsxh-radius);
+  padding:26px;border:1px solid var(--tsxh-line);
+}
+.tsxh-intro-side h3{font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.tsxh-intro-side h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--tsxh-accent)}
+.tsxh-mini-list{display:flex;flex-direction:column;gap:13px}
+.tsxh-mini-list li{display:flex;gap:11px;font-size:13.5px;color:var(--tsxh-ink-soft)}
+.tsxh-mini-list li i{
+  flex:none;width:24px;height:24px;border-radius:8px;background:#fff;
+  border:1px solid var(--tsxh-line);display:grid;place-items:center;
+  font-style:normal;font-size:11.5px;color:var(--tsxh-accent-deep);font-weight:700;
+}
+.tsxh-mini-list li b{color:var(--tsxh-ink)}
+
+/* ---------- focus content ---------- */
+.tsxh-focus-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:20px}
+.tsxh-focus-main{
+  grid-row:span 2;border-radius:var(--tsxh-radius);overflow:hidden;
+  background:#1d2130;position:relative;color:#fff;min-height:440px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  box-shadow:var(--tsxh-shadow);
+}
+.tsxh-focus-main img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85}
+.tsxh-focus-main::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(29,33,48,0) 30%,rgba(29,33,48,.92) 100%);
+}
+.tsxh-focus-main-body{position:relative;z-index:2;padding:26px}
+.tsxh-focus-main-body h3{font-size:22px;line-height:1.35;margin:10px 0 8px}
+.tsxh-focus-main-body p{font-size:13.5px;color:rgba(255,255,255,.76)}
+.tsxh-chip{
+  display:inline-block;font-size:11.5px;padding:3px 10px;border-radius:999px;
+  background:var(--tsxh-accent);color:#fff;font-weight:600;letter-spacing:.04em;
+}
+.tsxh-chip.dark{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28)}
+
+.tsxh-focus-mini{
+  border-radius:var(--tsxh-radius);overflow:hidden;background:#fff;
+  border:1px solid var(--tsxh-line);display:flex;flex-direction:column;
+  transition:.3s;box-shadow:0 2px 10px rgba(29,33,48,.04);
+}
+.tsxh-focus-mini:hover{transform:translateY(-4px);box-shadow:var(--tsxh-shadow)}
+.tsxh-focus-mini-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#ddd}
+.tsxh-focus-mini-thumb img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.tsxh-focus-mini:hover .tsxh-focus-mini-thumb img{transform:scale(1.06)}
+.tsxh-focus-mini-thumb .tsxh-vtri{
+  position:absolute;inset:0;display:grid;place-items:center;
+}
+.tsxh-vtri span{
+  width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.88);
+  display:grid;place-items:center;
+}
+.tsxh-vtri span::after{
+  content:"";border-left:13px solid #1d2130;
+  border-top:8px solid transparent;border-bottom:8px solid transparent;margin-left:3px;
+}
+.tsxh-focus-mini-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tsxh-focus-mini-body h3{font-size:14.5px;line-height:1.45}
+.tsxh-focus-mini-body small{font-size:12px;color:var(--tsxh-ink-soft)}
+.tsxh-metabar{display:flex;gap:12px;font-size:11.5px;color:#a9a294;margin-top:auto;padding-top:8px;flex-wrap:wrap}
+
+/* ---------- video wall ---------- */
+.tsxh-wall-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+}
+.tsxh-vcard{
+  background:#fff;border-radius:var(--tsxh-radius);overflow:hidden;
+  border:1px solid var(--tsxh-line);transition:.3s;
+  display:flex;flex-direction:column;
+}
+.tsxh-vcard:hover{transform:translateY(-5px);box-shadow:var(--tsxh-shadow-lg);border-color:transparent}
+.tsxh-vcard-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#2b3247}
+.tsxh-vcard-thumb img{width:100%;height:100%;object-fit:cover;transition:.55s}
+.tsxh-vcard:hover .tsxh-vcard-thumb img{transform:scale(1.07)}
+.tsxh-vcard-thumb .tsxh-vtri{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:.3s}
+.tsxh-vcard:hover .tsxh-vtri{opacity:1}
+.tsxh-vtri span{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center}
+.tsxh-vtri span::after{content:"";border-left:15px solid #1d2130;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:3px}
+.tsxh-vcard-tag{
+  position:absolute;left:12px;bottom:12px;font-size:11px;
+  background:rgba(29,33,48,.8);color:#fff;padding:3px 10px;border-radius:999px;
+  backdrop-filter:blur(4px);
+}
+.tsxh-vcard-body{padding:15px 17px 17px;display:flex;flex-direction:column;gap:8px;flex:1}
+.tsxh-vcard-body h3{font-size:15.5px;line-height:1.45}
+.tsxh-vcard-body p{font-size:12.5px;color:var(--tsxh-ink-soft);line-height:1.65}
+.tsxh-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tsxh-tags span{font-size:11px;padding:2px 9px;border-radius:999px;background:var(--tsxh-bg);color:var(--tsxh-ink-soft);border:1px solid var(--tsxh-line)}
+.tsxh-vcard-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:10px;margin-top:auto;border-top:1px dashed var(--tsxh-line);
+}
+.tsxh-author{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--tsxh-ink-soft)}
+.tsxh-avatar{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-size:11.5px;font-weight:700;color:#fff;flex:none;
+}
+.tsxh-actions{display:flex;gap:4px}
+.tsxh-act{
+  display:inline-flex;align-items:center;gap:4px;font-size:11.5px;
+  padding:4px 8px;border-radius:8px;color:var(--tsxh-ink-soft);transition:.2s;
+}
+.tsxh-act:hover{background:var(--tsxh-bg);color:var(--tsxh-accent-deep)}
+.tsxh-act.is-liked{color:var(--tsxh-accent);font-weight:700}
+.tsxh-act.is-saved{color:var(--tsxh-amber);font-weight:700}
+
+/* ---------- creators ---------- */
+.tsxh-creators{background:#1d2130;color:#f3efe9}
+.tsxh-creators .tsxh-eyebrow{color:var(--tsxh-amber)}
+.tsxh-creators .tsxh-eyebrow::before{background:var(--tsxh-amber)}
+.tsxh-creators .tsxh-lead{color:#a9a49c}
+.tsxh-creator-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tsxh-creator{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--tsxh-radius);padding:22px;transition:.3s;
+  display:flex;flex-direction:column;gap:12px;
+}
+.tsxh-creator:hover{background:rgba(255,255,255,.1);transform:translateY(-4px)}
+.tsxh-creator-top{display:flex;align-items:center;gap:12px}
+.tsxh-creator-avatar{
+  width:52px;height:52px;border-radius:16px;display:grid;place-items:center;
+  font-size:19px;font-weight:800;color:#fff;flex:none;
+}
+.tsxh-creator-top h3{font-size:15px}
+.tsxh-creator-top span{font-size:11.5px;color:#a9a49c}
+.tsxh-creator p{font-size:12.5px;color:#a9a49c;line-height:1.7;flex:1}
+.tsxh-creator-meta{display:flex;gap:14px;font-size:11.5px;color:#8b867e;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)}
+.tsxh-creator-meta b{color:#f3efe9;font-weight:700}
+.tsxh-creator-btn{
+  margin-top:4px;font-size:12.5px;padding:8px 0;border-radius:10px;
+  background:rgba(255,255,255,.1);text-align:center;transition:.25s;
+}
+.tsxh-creator-btn:hover{background:var(--tsxh-accent)}
+
+/* ---------- topics ---------- */
+.tsxh-topic-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.tsxh-topic{
+  display:flex;gap:18px;background:#fff;border-radius:var(--tsxh-radius);
+  border:1px solid var(--tsxh-line);padding:18px;transition:.3s;
+}
+.tsxh-topic:hover{box-shadow:var(--tsxh-shadow);transform:translateY(-3px)}
+.tsxh-topic-thumb{
+  width:132px;flex:none;border-radius:12px;overflow:hidden;aspect-ratio:16/10;
+  background:#2b3247;
+}
+.tsxh-topic-thumb img{width:100%;height:100%;object-fit:cover}
+.tsxh-topic-body h3{font-size:15.5px;margin-bottom:6px}
+.tsxh-topic-body p{font-size:12.5px;color:var(--tsxh-ink-soft);line-height:1.65}
+.tsxh-topic-status{
+  display:inline-flex;align-items:center;gap:6px;font-size:11.5px;
+  color:var(--tsxh-accent-deep);margin-top:10px;font-weight:600;
+}
+.tsxh-topic-status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--tsxh-accent);box-shadow:0 0 0 3px rgba(255,90,95,.18)}
+
+/* ---------- reviews ---------- */
+.tsxh-review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tsxh-review{
+  background:#fff;border:1px solid var(--tsxh-line);border-radius:var(--tsxh-radius);
+  padding:20px;display:flex;flex-direction:column;gap:12px;transition:.3s;
+}
+.tsxh-review:hover{box-shadow:var(--tsxh-shadow)}
+.tsxh-review-head{display:flex;align-items:center;gap:10px}
+.tsxh-review-head .tsxh-avatar{width:34px;height:34px;font-size:13px}
+.tsxh-review-head h4{font-size:13.5px}
+.tsxh-review-head span{font-size:11px;color:#a9a294}
+.tsxh-stars{color:var(--tsxh-amber);font-size:12px;letter-spacing:2px;margin-left:auto}
+.tsxh-review p{font-size:13px;color:var(--tsxh-ink-soft);line-height:1.75}
+
+/* ---------- inspiration tool ---------- */
+.tsxh-tool{
+  background:linear-gradient(135deg,#fff,#fdf6ef);
+  border:1px solid var(--tsxh-line);border-radius:24px;padding:38px;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center;
+}
+.tsxh-tool h2{font-size:clamp(22px,2.8vw,28px);margin-bottom:12px}
+.tsxh-tool p{color:var(--tsxh-ink-soft);font-size:14px;margin-bottom:20px}
+.tsxh-tool-ideas{display:flex;flex-wrap:wrap;gap:8px}
+.tsxh-idea{
+  font-size:12.5px;padding:6px 13px;border-radius:999px;background:#fff;
+  border:1px solid var(--tsxh-line);transition:.2s;
+}
+.tsxh-idea:hover{border-color:var(--tsxh-accent);color:var(--tsxh-accent-deep);transform:translateY(-1px)}
+.tsxh-tool-panel{background:#1d2130;color:#f3efe9;border-radius:18px;padding:24px}
+.tsxh-tool-panel h3{font-size:14px;margin-bottom:14px;color:var(--tsxh-amber)}
+.tsxh-tool-panel ul{display:flex;flex-direction:column;gap:11px}
+.tsxh-tool-panel li{font-size:13px;color:#cbc5bc;display:flex;gap:10px;line-height:1.6}
+.tsxh-tool-panel li i{font-style:normal;color:var(--tsxh-accent);font-weight:800;flex:none}
+
+/* ---------- faq ---------- */
+.tsxh-faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tsxh-faq-item{
+  background:#fff;border:1px solid var(--tsxh-line);border-radius:14px;
+  overflow:hidden;transition:.25s;
+}
+.tsxh-faq-item[open]{border-color:var(--tsxh-accent);box-shadow:0 8px 24px rgba(255,90,95,.1)}
+.tsxh-faq-item summary{
+  list-style:none;cursor:pointer;padding:16px 20px;font-size:14px;font-weight:600;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.tsxh-faq-item summary::-webkit-details-marker{display:none}
+.tsxh-faq-item summary::after{
+  content:"+";font-size:19px;color:var(--tsxh-accent);font-weight:700;transition:.25s;
+}
+.tsxh-faq-item[open] summary::after{transform:rotate(45deg)}
+.tsxh-faq-item p{padding:0 20px 18px;font-size:13px;color:var(--tsxh-ink-soft);line-height:1.75}
+
+/* ---------- updates & partners ---------- */
+.tsxh-split{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:start}
+.tsxh-timeline{display:flex;flex-direction:column;gap:0}
+.tsxh-tl-item{display:flex;gap:18px;padding:18px 0;border-bottom:1px dashed var(--tsxh-line)}
+.tsxh-tl-item:last-child{border-bottom:none}
+.tsxh-tl-date{
+  flex:none;font-size:12px;color:var(--tsxh-accent-deep);font-weight:700;
+  width:78px;letter-spacing:.02em;
+}
+.tsxh-tl-item h3{font-size:14.5px;margin-bottom:4px}
+.tsxh-tl-item p{font-size:12.5px;color:var(--tsxh-ink-soft)}
+.tsxh-partner-wall{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tsxh-partner{
+  background:#fff;border:1px solid var(--tsxh-line);border-radius:14px;
+  padding:20px 14px;text-align:center;font-size:13px;font-weight:700;
+  color:var(--tsxh-ink-soft);transition:.25s;
+}
+.tsxh-partner:hover{border-color:var(--tsxh-accent);color:var(--tsxh-accent-deep);transform:translateY(-2px)}
+.tsxh-partner small{display:block;font-size:10.5px;font-weight:400;color:#a9a294;margin-top:3px}
+
+/* ---------- contact ---------- */
+.tsxh-cta-band{
+  background:linear-gradient(120deg,#2b3247,#1d2130 55%,#3a2a33);
+  color:#f3efe9;border-radius:26px;padding:44px;margin:0 20px;
+  max-width:1200px;margin-left:auto;margin-right:auto;
+  display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:center;
+}
+.tsxh-cta-band h2{font-size:clamp(23px,3vw,31px);margin-bottom:12px;line-height:1.3}
+.tsxh-cta-band p{color:#b3ada4;font-size:14px}
+.tsxh-cta-info{display:flex;flex-direction:column;gap:12px;font-size:13.5px;color:#cbc5bc}
+.tsxh-cta-info b{color:#f3efe9}
+.tsxh-cta-info li{display:flex;gap:10px;align-items:flex-start}
+.tsxh-cta-info li::before{content:"→";color:var(--tsxh-accent);font-weight:800}
+.tsxh-cta-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.tsxh-btn-warn{background:var(--tsxh-accent);color:#fff}
+.tsxh-btn-warn:hover{background:#fff;color:#1d2130;transform:translateY(-2px)}
+
+/* ---------- footer ---------- */
+.tsxh-footer{background:#1d2130;color:#a9a49c;margin-top:60px;padding:56px 20px 30px}
+.tsxh-footer-inner{max-width:1240px;margin:0 auto}
+.tsxh-footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px}
+.tsxh-footer-brand strong{color:#f3efe9;font-size:17px;display:block;margin-bottom:10px}
+.tsxh-footer-brand p{font-size:12.5px;line-height:1.85;max-width:300px}
+.tsxh-footer h4{color:#f3efe9;font-size:13.5px;margin-bottom:14px}
+.tsxh-footer-links{display:flex;flex-direction:column;gap:9px;font-size:12.5px}
+.tsxh-footer-links a:hover{color:var(--tsxh-accent)}
+.tsxh-footer-bottom{
+  margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;
+  font-size:11.5px;color:#7d7972;
+}
+
+/* ---------- toast / modal / backtop ---------- */
+.tsxh-toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);
+  background:#1d2130;color:#fff;font-size:13px;padding:11px 22px;border-radius:999px;
+  box-shadow:0 14px 34px rgba(0,0,0,.3);opacity:0;pointer-events:none;
+  transition:.35s;z-index:300;white-space:nowrap;
+}
+.tsxh-toast.show{opacity:1;transform:translate(-50%,0)}
+
+.tsxh-modal{
+  position:fixed;inset:0;background:rgba(29,33,48,.55);backdrop-filter:blur(4px);
+  display:none;place-items:center;padding:20px;z-index:400;
+}
+.tsxh-modal.show{display:grid}
+.tsxh-modal-box{
+  background:#fff;border-radius:20px;padding:28px;max-width:460px;width:100%;
+  box-shadow:var(--tsxh-shadow-lg);animation:tsxh-pop .3s ease;
+}
+@keyframes ttsxh-pop{}
+@keyframes tsxh-pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.tsxh-modal-box h3{font-size:18px;margin-bottom:8px}
+.tsxh-modal-box p{font-size:13px;color:var(--tsxh-ink-soft);margin-bottom:18px;line-height:1.75}
+.tsxh-modal-field{display:flex;gap:8px;margin-bottom:16px}
+.tsxh-modal-field input{
+  flex:1;border:1px solid var(--tsxh-line);border-radius:10px;padding:10px 14px;
+  font-size:13px;outline:none;font-family:inherit;
+}
+.tsxh-modal-field input:focus{border-color:var(--tsxh-accent)}
+.tsxh-modal-close{
+  margin-top:4px;font-size:12.5px;color:#a9a294;text-align:center;display:block;width:100%;
+}
+
+.tsxh-backtop{
+  position:fixed;right:22px;bottom:22px;width:46px;height:46px;border-radius:14px;
+  background:#1d2130;color:#fff;display:grid;place-items:center;
+  box-shadow:var(--tsxh-shadow-lg);opacity:0;pointer-events:none;transition:.3s;z-index:200;
+  font-size:17px;
+}
+.tsxh-backtop.show{opacity:1;pointer-events:auto}
+.tsxh-backtop:hover{background:var(--tsxh-accent);transform:translateY(-3px)}
+
+/* ---------- responsive ---------- */
+@media(max-width:1080px){
+  .tsxh-hero{grid-template-columns:1fr;gap:36px}
+  .tsxh-focus-grid{grid-template-columns:1fr 1fr}
+  .tsxh-focus-main{grid-row:auto;grid-column:span 2;min-height:340px}
+  .tsxh-creator-grid{grid-template-columns:repeat(2,1fr)}
+  .tsxh-wall-grid{grid-template-columns:repeat(2,1fr)}
+  .tsxh-intro-grid,.tsxh-tool,.tsxh-split,.tsxh-cta-band{grid-template-columns:1fr}
+  .tsxh-footer-grid{grid-template-columns:1fr 1fr}
+  .tsxh-review-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:860px){
+  .tsxh-nav{display:none}
+  .tsxh-search{display:none}
+  .tsxh-burger{display:flex}
+  .tsxh-header-inner{justify-content:space-between}
+  .tsxh-btn-ghost{display:none}
+  .tsxh-topic-grid{grid-template-columns:1fr}
+  .tsxh-faq-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .tsxh-section{padding:52px 18px}
+  .tsxh-hero{padding:34px 18px 10px}
+  .tsxh-focus-grid{grid-template-columns:1fr}
+  .tsxh-focus-main{grid-column:auto;min-height:300px}
+  .tsxh-wall-grid{grid-template-columns:1fr}
+  .tsxh-creator-grid{grid-template-columns:1fr}
+  .tsxh-review-grid{grid-template-columns:1fr}
+  .tsxh-footer-grid{grid-template-columns:1fr}
+  .tsxh-cta-band{padding:30px 22px}
+  .tsxh-tool{padding:26px}
+  .tsxh-topic{flex-direction:column}
+  .tsxh-topic-thumb{width:100%}
+  .tsxh-stats{gap:20px}
+  .tsxh-announce-inner{font-size:12px;padding:8px 14px}
+  .tsxh-announce-more{display:none}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- ============ STICKY HEAD ============ -->
+<div class="tsxh-sticky-head">
+  <div class="tsxh-announce" id="tsxhAnnounce">
+    <div class="tsxh-announce-inner">
+      <span class="tsxh-announce-badge">最新发布</span>
+      <div class="tsxh-announce-track">
+        <ul class="tsxh-announce-list" id="tsxhAnnounceList">
+          <li>《巷口的三分钟》<b>冬日特辑</b> 11月18日上线 · 记录城市里最普通的黄昏</li>
+          <li>「真实的力量」创作挑战 <b>报名开启</b> · 面向所有原创影像创作者</li>
+          <li>推特小小绘 <b>官方发布</b> 2026 内容生态白皮书 · 完整版可下载</li>
+          <li>新一期创作者访谈：<b>把镜头交给生活</b> · 11月22日 更新</li>
+        </ul>
+      </div>
+      <a class="tsxh-announce-more" href="#tsxhUpdates">查看全部</a>
+    </div>
+  </div>
+
+  <header class="tsxh-header" id="tsxhHeader">
+    <div class="tsxh-header-inner">
+      <a class="tsxh-logo" href="#tsxhTop" aria-label="推特小小绘官方网站首页">
+        <span class="tsxh-logo-mark" aria-hidden="true"></span>
+        <span class="tsxh-logo-text">
+          <strong>推特小小绘</strong>
+          <span>Official Video</span>
+        </span>
+      </a>
+      <nav class="tsxh-nav" aria-label="主导航">
+        <a href="#tsxhTop" class="is-active">首页</a>
+        <a href="#tsxhFocus">焦点影像</a>
+        <a href="#tsxhWall">热门内容</a>
+        <a href="#tsxhCreators">创作者</a>
+        <a href="#tsxhUpdates">企业动态</a>
+        <a href="#tsxhFaq">帮助</a>
+        <a href="#tsxhContact">联系我们</a>
+      </nav>
+      <div class="tsxh-header-actions">
+        <form class="tsxh-search" id="tsxhSearchForm" role="search" onsubmit="return false">
+          <input type="search" id="tsxhSearchInput" placeholder="搜索影像、创作者、专题…" aria-label="站内搜索">
+          <button class="tsxh-search-btn" aria-label="搜索" id="tsxhSearchBtn">⌕</button>
+        </form>
+        <a class="tsxh-btn-ghost" href="#tsxhContact">投稿入口</a>
+        <button class="tsxh-burger" id="tsxhBurger" aria-label="展开导航" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="tsxh-mobile-nav" id="tsxhMobileNav" aria-label="移动端导航">
+      <a href="#tsxhTop">首页</a>
+      <a href="#tsxhFocus">焦点影像</a>
+      <a href="#tsxhWall">热门内容</a>
+      <a href="#tsxhCreators">创作者</a>
+      <a href="#tsxhUpdates">企业动态</a>
+      <a href="#tsxhFaq">帮助</a>
+      <a href="#tsxhContact">联系我们</a>
+    </nav>
+  </header>
+</div>
+
+<!-- ============ HERO ============ -->
+<main id="tsxhTop">
+<section class="tsxh-hero">
+  <div class="tsxh-hero-copy">
+    <div class="tsxh-pill-row">
+      <span class="tsxh-pill is-hot">官方网站</span>
+      <span class="tsxh-pill">原创影像</span>
+      <span class="tsxh-pill">真实记录</span>
+      <span class="tsxh-pill">持续运营</span>
+    </div>
+    <h1>推特小小绘</h1>
+    <p class="tsxh-hero-desc">
+      这里是 <b>推特小小绘</b> 的官方品牌门户。我们是一家专注于生活记录与真实表达的影像内容企业，以 <b>原创、正版、高清</b> 为核心标准，持续为社区用户呈现有温度的日常片段、人物访谈与城市观察。作为行业内值得信赖的内容平台，我们相信每一次按下录制，都是对平凡生活的一次郑重回应。
+    </p>
+    <div class="tsxh-hero-cta">
+      <a class="tsxh-btn ttsxh-btn-primary ttsxh-btn-primary" href="#tsxhFocus">浏览焦点影像</a>
+      <a class="tsxh-btn ttsxh-btn-line ttsxh-btn-line" href="#tsxhCreators">认识创作者</a>
+      <button class="tsxh-btn ttsxh-btn-line" data-tsxh-modal="share">分享本页</button>
+    </div>
+    <div class="tsxh-stats">
+      <div class="tsxh-stat"><strong><i>8.6</i>万+</strong><span>原创影像作品</span></div>
+      <div class="tsxh-stat"><strong><i>320</i>位</strong><span>签约创作者</span></div>
+      <div class="tsxh-stat"><strong><i>1450</i>万</strong><span>社区累计播放</span></div>
+    </div>
+  </div>
+  <div class="tsxh-hero-visual">
+    <div class="tsxh-hero-frame">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 440'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232b3247'/%3E%3Cstop offset='0.55' stop-color='%234a3c52'/%3E%3Cstop offset='1' stop-color='%23c4786b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='440' fill='url(%23g1)'/%3E%3Ccircle cx='500' cy='110' r='62' fill='%23ffb35c' opacity='0.85'/%3E%3Cpath d='M0 340 L120 290 L240 330 L360 275 L480 320 L640 265 L640 440 L0 440 Z' fill='%231d2130' opacity='0.72'/%3E%3Cpath d='M0 380 L150 345 L300 385 L450 340 L640 390 L640 440 L0 440 Z' fill='%23151926' opacity='0.85'/%3E%3Crect x='62' y='150' width='110' height='150' rx='6' fill='%23f3efe9' opacity='0.16'/%3E%3Crect x='80' y='168' width='74' height='52' rx='4' fill='%23ff5a5f' opacity='0.55'/%3E%3Cg stroke='%23ffb35c' stroke-width='3' opacity='0.7'%3E%3Cline x1='470' y1='200' x2='560' y2='200'/%3E%3Cline x1='470' y1='220' x2='530' y2='220'/%3E%3Cline x1='470' y1='240' x2='545' y2='240'/%3E%3C/g%3E%3C/svg%3E" alt="推特小小绘官方网站首屏主视觉：黄昏城市天际线与创作者影像剪影">
+      <span class="tsxh-hero-tag">焦点影像 · 巷口的三分钟</span>
+      <div class="tsxh-hero-play">
+        <button aria-label="播放焦点影像《巷口的三分钟》" onclick="tsxhToast('已进入《巷口的三分钟》影像详情页')"></button>
+      </div>
+    </div>
+    <div class="tsxh-hero-float">
+      <b>本周社区精选</b>
+      12 部原创短片，来自 9 座城市的普通生活现场。
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTRO / ANALYSIS ============ -->
+<section class="tsxh-intro" id="tsxhAbout">
+  <div class="tsxh-intro-inner">
+    <div class="tsxh-section-head">
+      <span class="tsxh-eyebrow">品牌定位与解析</span>
+      <h2 class="tsxh-h2">推特小小绘，<em>记录真实生活的影像社区</em></h2>
+      <p class="tsxh-lead">关于我们是谁、在做什么，以及为什么值得被认真记录。</p>
+    </div>
+    <div class="tsxh-intro-grid">
+      <div>
+        <p>
+          <b>推特小小绘</b> 成立于城市影像逐渐被算法推着走的年代。我们希望把镜头重新交还给生活本身——交还给楼下的早餐摊、交还给下班路上忽然亮起的路灯、交还给孩子第一次自己系好鞋带的那一秒。作为一家专注生活影像的企业，我们以 <b>原创、正版、高清</b> 为内容底线，以 <b>真实、温暖、陪伴</b> 为价值主张，持续运营一个不喧哗、但足够诚恳的内容生态。
+        </p>
+        <p>
+          在 <b>推特小小绘官方网站</b>，你可以看到每日更新的焦点影像、深度专题、创作者档案与社区话题。我们的平台不做猎奇，不做堆砌，而是把每一部作品当作一次完整的表达来对待：从选题、拍摄、剪辑到上线，全程由签约创作者与编辑团队共同打磨。这也是我们能够保持口碑、成为众多用户首选记录平台的原因。
+        </p>
+        <p>
+          我们把「小绘」理解为一种观看方式：不是宏大叙事，而是把生活里那些容易滑走的细节，用一笔一画的耐心描绘出来。它可能是一段 90 秒的清晨记录，也可能是一次长达四十分钟的人物访谈。形式可长可短，标准只有一个——是否足够真实，是否值得被另一双眼睛看见。
+        </p>
+        <p>
+          目前，平台已汇聚 320 余位来自不同城市的创作者，覆盖日常记录、城市探索、人物访谈、手作、治愈影像、知识科普等多元题材。我们提供创作扶持计划、剪辑工具包、选题灵感库与官方推广位，帮助创作者把「想拍」变成「拍成」。同时，我们也为企业与机构提供品牌故事定制、内容共创与社会责任影像项目服务，让更多有价值的故事被妥善记录。
+        </p>
+        <p>
+          我们深知，一个内容社区的生命力来自持续的信任。因此，推特小小绘在版权保护、内容审核、创作者分成与用户反馈机制上投入长期资源，坚持 <b>用户至上</b> 与 <b>匠心</b> 并重的运营原则。我们相信，真正的影响力不来自喧闹的流量，而来自每一次看完之后，观众愿意停留三秒的那份安静。
+        </p>
+        <p>
+          未来，推特小小绘将继续深耕生活影像这一垂直领域，推出更多原创企划、线下放映与创作者共创计划，让「记录」成为一件被尊重、被看见、也被温柔对待的事情。欢迎你加入这个社区，无论你是创作者、观众，还是只是偶然路过的人。
+        </p>
+      </div>
+      <aside class="tsxh-intro-side">
+        <h3>我们的四个坚持</h3>
+        <ul class="tsxh-mini-list">
+          <li><i>01</i><span><b>原创优先。</b>所有重点推荐内容均由平台与签约创作者原创出品，标注来源与作者。</span></li>
+          <li><i>02</i><span><b>高清标准。</b>统一 1080P 起步的画质规范，兼顾移动端与桌面端的观看体验。</span></li>
+          <li><i>03</i><span><b>真实表达。</b>不摆拍、不过度修饰，鼓励生活本来的样子出现在镜头里。</span></li>
+          <li><i>04</i><span><b>社区共治。</b>开放反馈入口，用户可对内容与创作者提出建议，参与社区规则共建。</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOCUS ============ -->
+<section class="tsxh-section" id="tsxhFocus">
+  <div class="tsxh-section-head">
+    <span class="tsxh-eyebrow">焦点影像</span>
+    <h2 class="tsxh-h2">本周 <em>值得停留</em> 的几部作品</h2>
+    <p class="tsxh-lead">由编辑团队与社区共同选出的重点推荐，每一部都值得从头看到尾。</p>
+  </div>
+  <div class="tsxh-focus-grid">
+    <article class="tsxh-focus-main">
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 560 560'%3E%3Cdefs%3E%3ClinearGradient id='fg1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231d2130'/%3E%3Cstop offset='0.6' stop-color='%235a3f4a'/%3E%3Cstop offset='1' stop-color='%23ff9a6b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='560' height='560' fill='url(%23fg1)'/%3E%3Crect x='0' y='330' width='560' height='230' fill='%23151926' opacity='0.55'/%3E%3Ccircle cx='150' cy='180' r='70' fill='%23ffb35c' opacity='0.6'/%3E%3Cpath d='M300 420 L330 300 L360 420 Z' fill='%23f3efe9' opacity='0.12'/%3E%3Cg fill='%23f3efe9' opacity='0.5'%3E%3Crect x='80' y='390' width='60' height='90' rx='4'/%3E%3Crect x='160' y='360' width='80' height='120' rx='4'/%3E%3Crect x='260' y='400' width='46' height='80' rx='4'/%3E%3C/g%3E%3Cg stroke='%23ff5a5f' stroke-width='2' opacity='0.6'%3E%3Ccircle cx='430' cy='150' r='44' fill='none'/%3E%3Ccircle cx='430' cy='150' r='58' fill='none'/%3E%3C/g%3E%3C/svg%3E" alt="焦点影像《巷口的三分钟》封面：黄昏巷口与暖色灯光">
+      <div class="tsxh-focus-main-body">
+        <span class="tsxh-chip">本周主推 · 城市探索</span>
+        <h3>巷口的三分钟：把镜头交给一座城市最普通的黄昏</h3>
+        <p>一部没有旁白的短片。三分钟里，早餐摊收摊、孩子放学、路灯亮起、猫在墙头打了个哈欠。导演说，他只是想让这些时刻被认真看一次。</p>
+        <div class="tsxh-metabar">
+          <span>创作者：林晚照</span><span>时长 03:12</span><span>播放 12.4 万</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="tsxh-focus-mini">
+      <div class="tsxh-focus-mini-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='fm1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233a4a63'/%3E%3Cstop offset='1' stop-color='%2389a7c4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23fm1)'/%3E%3Ccircle cx='250' cy='48' r='26' fill='%23ffe3b0'/%3E%3Cpath d='M0 130 L70 100 L140 128 L210 95 L320 132 L320 180 L0 180 Z' fill='%231d2130' opacity='0.55'/%3E%3Crect x='30' y='60' width='8' height='60' fill='%231d2130' opacity='0.5'/%3E%3Crect x='46' y='76' width='8' height='44' fill='%231d2130' opacity='0.5'/%3E%3C/svg%3E" alt="焦点影像《清晨六点的菜市场》封面：冷蓝色调市场摊位">
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-focus-mini-body">
+        <span class="tsxh-chip dark" style="background:#eef1f6;color:#3a4a63">日常记录</span>
+        <h3>清晨六点的菜市场，与一位卖了三十年豆腐的阿姨</h3>
+        <small>创作者：周小满 · 08:41</small>
+        <div class="tsxh-metabar"><span>播放 6.8 万</span><span>收藏 3,204</span></div>
+      </div>
+    </article>
+
+    <article class="tsxh-focus-mini">
+      <div class="tsxh-focus-mini-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='fm2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f2b78a'/%3E%3Cstop offset='1' stop-color='%23c46b52'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23fm2)'/%3E%3Cg stroke='%23fff3e2' stroke-width='3' opacity='0.55'%3E%3Cpath d='M40 150 C80 100,120 150,160 110 S240 140,290 90' fill='none'/%3E%3C/g%3E%3Ccircle cx='70' cy='60' r='22' fill='%23fff3e2' opacity='0.6'/%3E%3Crect x='200' y='40' width='80' height='58' rx='8' fill='%23522b20' opacity='0.4'/%3E%3C/svg%3E" alt="焦点影像《手作人的一天》封面：暖橙色木工工作台">
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-focus-mini-body">
+        <span class="tsxh-chip dark" style="background:#fdf0e5;color:#a9553c">手作 DIY</span>
+        <h3>手作人的一天：从一块木头到一只会说话的椅子</h3>
+        <small>创作者：阿木木工 · 14:06</small>
+        <div class="tsxh-metabar"><span>播放 4.1 万</span><span>收藏 1,876</span></div>
+      </div>
+    </article>
+
+    <article class="tsxh-focus-mini">
+      <div class="tsxh-focus-mini-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='fm3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2343425e'/%3E%3Cstop offset='1' stop-color='%23a88bb0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23fm3)'/%3E%3Cg fill='%23f0e6f2' opacity='0.55'%3E%3Ccircle cx='90' cy='70' r='18'/%3E%3Ccircle cx='160' cy='52' r='12'/%3E%3Ccircle cx='220' cy='84' r='22'/%3E%3C/g%3E%3Cpath d='M0 140 Q80 110 160 140 T320 130 L320 180 L0 180 Z' fill='%232a2438' opacity='0.6'/%3E%3C/svg%3E" alt="焦点影像《听一位老人讲他的年轻时代》封面：柔和紫色访谈画面">
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-focus-mini-body">
+        <span class="tsxh-chip dark" style="background:#f2eef5;color:#6e4f7c">人物访谈</span>
+        <h3>听一位老人讲他的年轻时代：那些没说出口的遗憾</h3>
+        <small>创作者：沈言 · 26:30</small>
+        <div class="tsxh-metabar"><span>播放 3.7 万</span><span>收藏 2,110</span></div>
+      </div>
+    </article>
+
+    <article class="tsxh-focus-mini">
+      <div class="tsxh-focus-mini-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='fm4' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232f5d4a'/%3E%3Cstop offset='1' stop-color='%2397b58a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23fm4)'/%3E%3Cg fill='%23e6f0d8' opacity='0.45'%3E%3Cpath d='M60 150 L80 60 L100 150 Z'/%3E%3Cpath d='M130 150 L150 80 L170 150 Z'/%3E%3Cpath d='M200 150 L220 50 L240 150 Z'/%3E%3C/g%3E%3Ccircle cx='270' cy='45' r='18' fill='%23fff0c2' opacity='0.8'/%3E%3C/svg%3E" alt="焦点影像《山野露营的三个夜晚》封面：自然绿色森林营地">
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-focus-mini-body">
+        <span class="tsxh-chip dark" style="background:#eaf2e4;color:#3d6b52">户外活动</span>
+        <h3>山野露营的三个夜晚：没有信号的夜里我们聊了什么</h3>
+        <small>创作者：野渡 · 18:22</small>
+        <div class="tsxh-metabar"><span>播放 5.2 万</span><span>收藏 2,640</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ VIDEO WALL ============ -->
+<section class="tsxh-section" id="tsxhWall" style="padding-top:0">
+  <div class="tsxh-section-head">
+    <span class="tsxh-eyebrow">热门视频流</span>
+    <h2 class="tsxh-h2">社区正在 <em>持续更新</em> 的影像</h2>
+    <p class="tsxh-lead">来自不同城市、不同题材的原创内容，按社区热度与编辑推荐混合排序。</p>
+  </div>
+  <div class="tsxh-wall-grid" id="tsxhWallGrid">
+    <article class="tsxh-vcard">
+      <div class="tsxh-vcard-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23c46b52'/%3E%3Cstop offset='1' stop-color='%23f2c58a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v1)'/%3E%3Ccircle cx='80' cy='90' r='34' fill='%23fff5e6' opacity='0.5'/%3E%3Crect x='150' y='60' width='120' height='70' rx='10' fill='%23a9553c' opacity='0.35'/%3E%3Cg stroke='%23fff5e6' stroke-width='2' opacity='0.5'%3E%3Cline x1='170' y1='80' x2='250' y2='80'/%3E%3Cline x1='170' y1='98' x2='230' y2='98'/%3E%3C/g%3E%3C/svg%3E" alt="视频封面《一碗热汤面的治愈力》暖色厨房场景">
+        <span class="tsxh-vcard-tag">美食烹饪</span>
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-vcard-body">
+        <h3>一碗热汤面的治愈力：冬天最想复刻的家常味</h3>
+        <p>从熬汤底到揉面，完整记录一位北方妈妈的厨房日常，附详细文字菜谱。</p>
+        <div class="tsxh-tags"><span>家常菜</span><span>教程</span></div>
+        <div class="tsxh-vcard-foot">
+          <div class="tsxh-author"><span class="tsxh-avatar" style="background:#c46b52">饭</span>饭团小周</div>
+          <div class="tsxh-actions">
+            <button class="tsxh-act" data-tsxh-like>♥ <b>2,861</b></button>
+            <button class="tsxh-act" data-tsxh-save>☆</button>
+            <button class="tsxh-act" data-tsxh-copy>⧉</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="tsxh-vcard">
+      <div class="tsxh-vcard-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232b3247'/%3E%3Cstop offset='1' stop-color='%235d6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v2)'/%3E%3Cg fill='%23f3efe9' opacity='0.22'%3E%3Crect x='30' y='40' width='50' height='100' rx='4'/%3E%3Crect x='95' y='60' width='40' height='80' rx='4'/%3E%3Crect x='150' y='30' width='60' height='110' rx='4'/%3E%3C/g%3E%3Ccircle cx='260' cy='70' r='28' fill='%23ffb35c' opacity='0.7'/%3E%3C/svg%3E" alt="视频封面《深夜城市漫游指南》冷蓝夜色街道">
+        <span class="tsxh-vcard-tag">城市探索</span>
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-vcard-body">
+        <h3>深夜城市漫游指南：凌晨两点的便利店与出租车</h3>
+        <p>用一整夜走完三条街，把城市在深夜里的另一张面孔完整记录下来。</p>
+        <div class="tsxh-tags"><span>城市</span><span>夜景</span></div>
+        <div class="tsxh-vcard-foot">
+          <div class="tsxh-author"><span class="tsxh-avatar" style="background:#5d6b8a">夜</span>夜行记</div>
+          <div class="tsxh-actions">
+            <button class="tsxh-act" data-tsxh-like>♥ <b>1,940</b></button>
+            <button class="tsxh-act" data-tsxh-save>☆</button>
+            <button class="tsxh-act" data-tsxh-copy>⧉</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="tsxh-vcard">
+      <div class="tsxh-vcard-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f4d1d9'/%3E%3Cstop offset='1' stop-color='%23b98ba5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v3)'/%3E%3Ccircle cx='160' cy='90' r='48' fill='%23fff5f8' opacity='0.6'/%3E%3Cpath d='M140 90 L155 105 L185 70' stroke='%23a55a78' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" alt="视频封面《关于陪伴这件事》柔和粉紫插画风格">
+        <span class="tsxh-vcard-tag">情感故事</span>
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-vcard-body">
+        <h3>关于陪伴这件事：我们采访了 12 对普通夫妻</h3>
+        <p>没有浪漫台词，只有柴米油盐里的默契。一部关于长期关系的真实记录。</p>
+        <div class="tsxh-tags"><span>访谈</span><span>关系</span></div>
+        <div class="tsxh-vcard-foot">
+          <div class="tsxh-author"><span class="tsxh-avatar" style="background:#b98ba5">沈</span>沈言</div>
+          <div class="tsxh-actions">
+            <button class="tsxh-act" data-tsxh-like>♥ <b>3,412</b></button>
+            <button class="tsxh-act" data-tsxh-save>☆</button>
+            <button class="tsxh-act" data-tsxh-copy>⧉</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="tsxh-vcard">
+      <div class="tsxh-vcard-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v4' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232f5d4a'/%3E%3Cstop offset='1' stop-color='%23a9c48f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v4)'/%3E%3Cg fill='%23eaf2e4' opacity='0.45'%3E%3Ccircle cx='80' cy='120' r='30'/%3E%3Ccircle cx='150' cy='100' r='20'/%3E%3Ccircle cx='230' cy='130' r='26'/%3E%3C/g%3E%3Cpath d='M0 150 Q80 120 160 150 T320 140 L320 180 L0 180 Z' fill='%231d3a2c' opacity='0.5'/%3E%3C/svg%3E" alt="视频封面《阳台种菜第二年》绿色植物生长记录">
+        <span class="tsxh-vcard-tag">生活方式</span>
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-vcard-body">
+        <h3>阳台种菜第二年：从三盆香草到一整面绿墙</h3>
+        <p>分享真实失败与成功经验，包括土壤配比、浇水节奏与虫害处理的小技巧。</p>
+        <div class="tsxh-tags"><span>种植</span><span>经验分享</span></div>
+        <div class="tsxh-vcard-foot">
+          <div class="tsxh-author"><span class="tsxh-avatar" style="background:#4a7a5e">绿</span>绿林小院</div>
+          <div class="tsxh-actions">
+            <button class="tsxh-act" data-tsxh-like>♥ <b>1,275</b></button>
+            <button class="tsxh-act" data-tsxh-save>☆</button>
+            <button class="tsxh-act" data-tsxh-copy>⧉</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="tsxh-vcard">
+      <div class="tsxh-vcard-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v5' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233b3f5e'/%3E%3Cstop offset='1' stop-color='%237c8ab8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v5)'/%3E%3Cg stroke='%23d9e2ff' stroke-width='2' opacity='0.55'%3E%3Crect x='60' y='50' width='80' height='60' rx='6' fill='none'/%3E%3Crect x='160' y='70' width='90' height='50' rx='6' fill='none'/%3E%3C/g%3E%3Ccircle cx='250' cy='45' r='14' fill='%23ffd98e' opacity='0.8'/%3E%3C/svg%3E" alt="视频封面《剪辑入门：三个节奏技巧》科技蓝界面">
+        <span class="tsxh-vcard-tag">教程干货</span>
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-vcard-body">
+        <h3>剪辑入门：三个让画面「会呼吸」的节奏技巧</h3>
+        <p>从素材整理到转场选择，手把手拆解一条 60 秒短片是如何被剪出来的。</p>
+        <div class="tsxh-tags"><span>剪辑</span><span>教程</span></div>
+        <div class="tsxh-vcard-foot">
+          <div class="tsxh-author"><span class="tsxh-avatar" style="background:#5566a0">剪</span>剪刀手阿哲</div>
+          <div class="tsxh-actions">
+            <button class="tsxh-act" data-tsxh-like>♥ <b>2,208</b></button>
+            <button class="tsxh-act" data-tsxh-save>☆</button>
+            <button class="tsxh-act" data-tsxh-copy>⧉</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="tsxh-vcard">
+      <div class="tsxh-vcard-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v6' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23e8c07a'/%3E%3Cstop offset='1' stop-color='%23c98d5c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v6)'/%3E%3Cg fill='%23fff6e2' opacity='0.55'%3E%3Ccircle cx='90' cy='80' r='10'/%3E%3Ccircle cx='120' cy='60' r='8'/%3E%3Ccircle cx='150' cy='92' r='12'/%3E%3Ccircle cx='200' cy='66' r='9'/%3E%3C/g%3E%3Cpath d='M40 150 Q160 110 280 150 L280 180 L40 180 Z' fill='%236b4326' opacity='0.4'/%3E%3C/svg%3E" alt="视频封面《一杯手冲咖啡的早晨》琥珀色咖啡场景">
+        <span class="tsxh-vcard-tag">日常记录</span>
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-vcard-body">
+        <h3>一杯手冲咖啡的早晨：把十分钟留给自己的仪式</h3>
+        <p>磨豆、闷蒸、注水，每个步骤都慢下来。适合在周末的清晨安静看完。</p>
+        <div class="tsxh-tags"><span>咖啡</span><span>治愈</span></div>
+        <div class="tsxh-vcard-foot">
+          <div class="tsxh-author"><span class="tsxh-avatar" style="background:#c98d5c">豆</span>豆子先生</div>
+          <div class="tsxh-actions">
+            <button class="tsxh-act" data-tsxh-like>♥ <b>1,633</b></button>
+            <button class="tsxh-act" data-tsxh-save>☆</button>
+            <button class="tsxh-act" data-tsxh-copy>⧉</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="tsxh-vcard">
+      <div class="tsxh-vcard-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v7' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232a2a3e'/%3E%3Cstop offset='1' stop-color='%236b5a86'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v7)'/%3E%3Cg fill='%23e6dff2' opacity='0.6'%3E%3Crect x='40' y='40' width='10' height='80'/%3E%3Crect x='60' y='60' width='10' height='60'/%3E%3Crect x='80' y='30' width='10' height='90'/%3E%3Crect x='100' y='55' width='10' height='65'/%3E%3C/g%3E%3Ccircle cx='240' cy='90' r='38' fill='%23ff8a7a' opacity='0.55'/%3E%3C/svg%3E" alt="视频封面《一场地下音乐现场》紫色舞台灯光">
+        <span class="tsxh-vcard-tag">音乐现场</span>
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-vcard-body">
+        <h3>一场地下音乐现场：十平米房间里的三十个人</h3>
+        <p>纪录一支独立乐队的排练与演出，声音很吵，但每个人都很真诚。</p>
+        <div class="tsxh-tags"><span>音乐</span><span>纪实</span></div>
+        <div class="tsxh-vcard-foot">
+          <div class="tsxh-author"><span class="tsxh-avatar" style="background:#6b5a86">声</span>声场记录</div>
+          <div class="tsxh-actions">
+            <button class="tsxh-act" data-tsxh-like>♥ <b>1,102</b></button>
+            <button class="tsxh-act" data-tsxh-save>☆</button>
+            <button class="tsxh-act" data-tsxh-copy>⧉</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="tsxh-vcard">
+      <div class="tsxh-vcard-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 180'%3E%3Cdefs%3E%3ClinearGradient id='v8' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23d8e0c8'/%3E%3Cstop offset='1' stop-color='%238fa37b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='180' fill='url(%23v8)'/%3E%3Cg stroke='%235f7350' stroke-width='2' opacity='0.45'%3E%3Cpath d='M40 150 L80 90 L120 150' fill='none'/%3E%3Cpath d='M120 150 L160 70 L200 150' fill='none'/%3E%3Cpath d='M200 150 L240 100 L280 150' fill='none'/%3E%3C/g%3E%3Ccircle cx='270' cy='45' r='16' fill='%23fff6d8' opacity='0.75'/%3E%3C/svg%3E" alt="视频封面《城市里的四季植物观察》大地色自然记录">
+        <span class="tsxh-vcard-tag">知识科普</span>
+        <div class="tsxh-vtri"><span></span></div>
+      </div>
+      <div class="tsxh-vcard-body">
+        <h3>城市里的四季植物观察：认识你路过的每一棵树</h3>
+        <p>从银杏到香樟，用一年时间记录同一街区的植物变化，通俗易懂。</p>
+        <div class="tsxh-tags"><span>植物</span><span>科普</span></div>
+        <div class="tsxh-vcard-foot">
+          <div class="tsxh-author"><span class="tsxh-avatar" style="background:#7d9468">叶</span>叶知秋</div>
+          <div class="tsxh-actions">
+            <button class="tsxh-act" data-tsxh-like>♥ <b>986</b></button>
+            <button class="tsxh-act" data-tsxh-save>☆</button>
+            <button class="tsxh-act" data-tsxh-copy>⧉</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CREATORS ============ -->
+<section class="tsxh-creators" id="tsxhCreators">
+  <div class="tsxh-section">
+    <div class="tsxh-section-head">
+      <span class="tsxh-eyebrow">创作者矩阵</span>
+      <h2 class="tsxh-h2">这些人，正在记录 <em>真实的生活</em></h2>
+      <p class="tsxh-lead">平台签约创作者档案。点击作者可查看其作品与创作手记。</p>
+    </div>
+    <div class="tsxh-creator-grid">
+      <article class="tsxh-creator">
+        <div class="tsxh-creator-top">
+          <span class="tsxh-creator-avatar" style="background:linear-gradient(135deg,#ff8a7a,#c46b52)">林</span>
+          <div><h3>林晚照</h3><span>城市探索 · 日常记录</span></div>
+        </div>
+        <p>喜欢在黄昏出门，拍那些没人注意的角落。作品节奏缓慢，但常有钝钝的力量。</p>
+        <div class="tsxh-creator-meta"><span>作品 <b>126</b></span><span>关注 <b>4.8</b>万</span></div>
+        <button class="tsxh-creator-btn" data-tsxh-author="林晚照">查看档案</button>
+      </article>
+      <article class="tsxh-creator">
+        <div class="tsxh-creator-top">
+          <span class="tsxh-creator-avatar" style="background:linear-gradient(135deg,#89a7c4,#3a4a63)">周</span>
+          <div><h3>周小满</h3><span>人物访谈 · 生活记录</span></div>
+        </div>
+        <p>前媒体记者，现专注普通人访谈。相信每个人的一生都值得一次认真倾听。</p>
+        <div class="tsxh-creator-meta"><span>作品 <b>89</b></span><span>关注 <b>3.2</b>万</span></div>
+        <button class="tsxh-creator-btn" data-tsxh-author="周小满">查看档案</button>
+      </article>
+      <article class="tsxh-creator">
+        <div class="tsxh-creator-top">
+          <span class="tsxh-creator-avatar" style="background:linear-gradient(135deg,#e8c07a,#a9553c)">木</span>
+          <div><h3>阿木木工</h3><span>手作 DIY · 创作幕后</span></div>
+        </div>
+        <p>木工工作室主理人，把制作过程拍成影像。喜欢听刨子和木头摩擦的声音。</p>
+        <div class="tsxh-creator-meta"><span>作品 <b>74</b></span><span>关注 <b>2.6</b>万</span></div>
+        <button class="tsxh-creator-btn" data-tsxh-author="阿木木工">查看档案</button>
+      </article>
+      <article class="tsxh-creator">
+        <div class="tsxh-creator-top">
+          <span class="tsxh-creator-avatar" style="background:linear-gradient(135deg,#a9c48f,#2f5d4a)">野</span>
+          <div><h3>野渡</h3><span>户外活动 · 治愈影像</span></div>
+        </div>
+        <p>常年往返山野与城市之间。镜头里有风、有雨，也有回到生活后的平静。</p>
+        <div class="tsxh-creator-meta"><span>作品 <b>102</b></span><span>关注 <b>5.1</b>万</span></div>
+        <button class="tsxh-creator-btn" data-tsxh-author="野渡">查看档案</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOPICS ============ -->
+<section class="tsxh-section" id="tsxhTopics">
+  <div class="tsxh-section-head">
+    <span class="tsxh-eyebrow">专题企划</span>
+    <h2 class="tsxh-h2">正在进行的 <em>长期内容企划</em></h2>
+    <p class="tsxh-lead">由编辑团队发起、创作者共同参与的系列项目，持续更新中。</p>
+  </div>
+  <div class="tsxh-topic-grid">
+    <article class="tsxh-topic">
+      <div class="tsxh-topic-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 200'%3E%3Cdefs%3E%3ClinearGradient id='t1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231d2130'/%3E%3Cstop offset='1' stop-color='%235a6a8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='200' fill='url(%23t1)'/%3E%3Cg fill='%23f3efe9' opacity='0.25'%3E%3Crect x='30' y='70' width='70' height='90' rx='6'/%3E%3Crect x='120' y='40' width='80' height='120' rx='6'/%3E%3Crect x='220' y='90' width='70' height='80' rx='6'/%3E%3C/g%3E%3Ccircle cx='160' cy='100' r='20' fill='%23ffb35c' opacity='0.7'/%3E%3C/svg%3E" alt="专题《一座城的十二个时辰》冷蓝城市建筑">
+      </div>
+      <div class="tsxh-topic-body">
+        <h3>一座城的十二个时辰</h3>
+        <p>联合 18 位创作者，用一整年时间记录同一座城市从清晨到深夜的十二个时间切片。每月更新两期，已上线 11 期。</p>
+        <span class="tsxh-topic-status">更新中 · 第 12 期 12 月上线</span>
+      </div>
+    </article>
+    <article class="tsxh-topic">
+      <div class="tsxh-topic-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 200'%3E%3Cdefs%3E%3ClinearGradient id='t2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23f4d1d9'/%3E%3Cstop offset='1' stop-color='%239c7a8f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='200' fill='url(%23t2)'/%3E%3Ccircle cx='100' cy='100' r='46' fill='%23fff5f8' opacity='0.5'/%3E%3Ccircle cx='200' cy='90' r='30' fill='%23fff5f8' opacity='0.35'/%3E%3C/svg%3E" alt="专题《听她说》柔和粉紫人物访谈">
+      </div>
+      <div class="tsxh-topic-body">
+        <h3>听她说：女性创作者的十二次对话</h3>
+        <p>十二位不同年龄、职业的女性创作者，讲述她们如何开始拍摄、如何面对镜头外的质疑。已上线 7 期，社区反响热烈。</p>
+        <span class="tsxh-topic-status">更新中 · 第 8 期 11 月 22 日</span>
+      </div>
+    </article>
+    <article class="tsxh-topic">
+      <div class="tsxh-topic-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 200'%3E%3Cdefs%3E%3ClinearGradient id='t3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23c46b52'/%3E%3Cstop offset='1' stop-color='%23f2c58a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='200' fill='url(%23t3)'/%3E%3Cg fill='%23fff5e6' opacity='0.4'%3E%3Crect x='40' y='120' width='60' height='50' rx='4'/%3E%3Crect x='120' y='100' width='50' height='70' rx='4'/%3E%3Crect x='190' y='130' width='70' height='40' rx='4'/%3E%3C/g%3E%3Ccircle cx='250' cy='60' r='22' fill='%23fff5e6' opacity='0.6'/%3E%3C/svg%3E" alt="专题《厨房里的地方志》暖橙家常菜场景">
+      </div>
+      <div class="tsxh-topic-body">
+        <h3>厨房里的地方志</h3>
+        <p>一道菜就是一方水土的注脚。走进不同家庭的厨房，记录食物背后的迁徙、记忆与家庭关系。已上线 9 期。</p>
+        <span class="tsxh-topic-status">长期更新 · 每两周一期</span>
+      </div>
+    </article>
+    <article class="tsxh-topic">
+      <div class="tsxh-topic-thumb">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 200'%3E%3Cdefs%3E%3ClinearGradient id='t4' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232f5d4a'/%3E%3Cstop offset='1' stop-color='%23a9c48f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='200' fill='url(%23t4)'/%3E%3Cpath d='M0 150 Q80 110 160 145 T320 130 L320 200 L0 200 Z' fill='%231d3a2c' opacity='0.55'/%3E%3Cg fill='%23eaf2e4' opacity='0.45'%3E%3Ccircle cx='70' cy='60' r='20'/%3E%3Ccircle cx='180' cy='50' r='14'/%3E%3C/g%3E%3C/svg%3E" alt="专题《去野外，把心放下来》自然绿户外场景">
+      </div>
+      <div class="tsxh-topic-body">
+        <h3>去野外，把心放下来</h3>
+        <p>面向城市居民的轻户外影像企划，从一日徒步到周末露营，提供真实可复制的路线与经验。</p>
+        <span class="tsxh-topic-status">更新中 · 附路线攻略</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ INSPIRATION TOOL ============ -->
+<section class="tsxh-section" style="padding-top:0">
+  <div class="tsxh-tool">
+    <div>
+      <span class="tsxh-eyebrow">创作灵感工具箱</span>
+      <h2>不知道拍什么？<br>先从一个具体的小问题开始</h2>
+      <p>推特小小绘为社区创作者整理了持续的选题灵感、标题建议与剪辑思路。点击下面的关键词，看看大家最近都在拍什么。</p>
+      <div class="tsxh-tool-ideas">
+        <button class="tsxh-idea" data-tsxh-idea="下班后的那条路">下班后的那条路</button>
+        <button class="tsxh-idea" data-tsxh-idea="家里最旧的一件物品">家里最旧的一件物品</button>
+        <button class="tsxh-idea" data-tsxh-idea="一个人吃饭的仪式感">一个人吃饭的仪式感</button>
+        <button class="tsxh-idea" data-tsxh-idea="楼下小店的老板">楼下小店的老板</button>
+        <button class="tsxh-idea" data-tsxh-idea="这个季节的第一场雨">这个季节的第一场雨</button>
+        <button class="tsxh-idea" data-tsxh-idea="把手机留给别人拍我">把手机留给别人拍我</button>
+      </div>
+    </div>
+    <div class="tsxh-tool-panel">
+      <h3>本周创作提示 · 真实的力量</h3>
+      <ul>
+        <li><i>01</i><span>试着用固定机位拍一段 30 秒不剪辑的画面，观察自己在构图上做了哪些取舍。</span></li>
+        <li><i>02</i><span>为一段素材写三个不同版本的旁白，再选出最不像「广告」的那一版。</span></li>
+        <li><i>03</i><span>采访家里的一位长辈，只问一个问题：你年轻时最想做的事是什么？</span></li>
+        <li><i>04</i><span>把镜头放低一点，再低一点，看看日常场景会变成什么样子。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="tsxh-section" id="tsxhReviews" style="padding-top:0">
+  <div class="tsxh-section-head">
+    <span class="tsxh-eyebrow">社区口碑</span>
+    <h2 class="tsxh-h2">他们这样说 <em>推特小小绘</em></h2>
+    <p class="tsxh-lead">来自创作者与观众的真实反馈，也是我们持续运营的动力。</p>
+  </div>
+  <div class="tsxh-review-grid">
+    <article class="tsxh-review">
+      <div class="tsxh-review-head">
+        <span class="tsxh-avatar" style="background:#c46b52">程</span>
+        <div><h4>程野</h4><span>创作者 · 加入 2 年</span></div>
+        <span class="tsxh-stars">★★★★★</span>
+      </div>
+      <p>最开始只是随手发了一条通勤路上的短片，没想到收到很多认真留言。这里的评论区很安静，但每条都很长，是那种愿意好好说话的地方。</p>
+    </article>
+    <article class="tsxh-review">
+      <div class="tsxh-review-head">
+        <span class="tsxh-avatar" style="background:#5d6b8a">何</span>
+        <div><h4>何小屿</h4><span>观众 · 加入 1 年</span></div>
+        <span class="tsxh-stars">★★★★★</span>
+      </div>
+      <p>界面干净，推荐也不吵。晚上睡不着的时候会来翻一翻日常记录类的作品，看别人安静生活，自己也会慢慢平静下来。</p>
+    </article>
+    <article class="tsxh-review">
+      <div class="tsxh-review-head">
+        <span class="tsxh-avatar" style="background:#7d9468">苏</span>
+        <div><h4>苏叶</h4><span>创作者 · 加入 8 个月</span></div>
+        <span class="tsxh-stars">★★★★☆</span>
+      </div>
+      <p>投稿流程比较清楚，编辑会给具体的修改建议，不是那种模板式回复。作为新人，能感受到平台是真的在看作品。</p>
+    </article>
+    <article class="tsxh-review">
+      <div class="tsxh-review-head">
+        <span class="tsxh-avatar" style="background:#6b5a86">林</span>
+        <div><h4>林间有风</h4><span>观众 · 加入 3 年</span></div>
+        <span class="tsxh-stars">★★★★★</span>
+      </div>
+      <p>从早期的城市探索系列一路看到现在，能感觉到内容在慢慢变厚。专题做得尤其用心，不是简单把视频凑在一起。</p>
+    </article>
+    <article class="tsxh-review">
+      <div class="tsxh-review-head">
+        <span class="tsxh-avatar" style="background:#5566a0">阿</span>
+        <div><h4>阿哲剪辑室</h4><span>创作者 · 加入 1 年半</span></div>
+        <span class="tsxh-stars">★★★★☆</span>
+      </div>
+      <p>教程类内容的画质和字幕规范做得不错，1080P 起的要求确实让观看体验好很多。希望以后能增加更多幕后花絮的入口。</p>
+    </article>
+    <article class="tsxh-review">
+      <div class="tsxh-review-head">
+        <span class="tsxh-avatar" style="background:#b98ba5">小</span>
+        <div><h4>小满的记事本</h4><span>观众 · 加入 6 个月</span></div>
+        <span class="tsxh-stars">★★★★★</span>
+      </div>
+      <p>喜欢这里对「小」的尊重。不是只有大事件才值得被拍，一碗面、一次散步、一只猫都能成为一部片子，这一点很难得。</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ UPDATES & PARTNERS ============ -->
+<section class="tsxh-section" id="tsxhUpdates" style="padding-top:0">
+  <div class="tsxh-split">
+    <div>
+      <div class="tsxh-section-head" style="margin-bottom:24px">
+        <span class="tsxh-eyebrow">企业动态</span>
+        <h2 class="tsxh-h2">官方发布 与 <em>内容更新</em></h2>
+        <p class="tsxh-lead">平台公告、企划进度与创作者扶持计划的最新进展。</p>
+      </div>
+      <div class="tsxh-timeline">
+        <div class="tsxh-tl-item">
+          <span class="tsxh-tl-date">2026.11.18</span>
+          <div>
+            <h3>「真实的力量」创作挑战正式开启报名</h3>
+            <p>面向所有社区创作者征集 3 分钟以内的生活记录短片，评审由编辑团队与社区代表共同组成，报名通道开放至 12 月 10 日。</p>
+          </div>
+        </div>
+        <div class="tsxh-tl-item">
+          <span class="tsxh-tl-date">2026.11.15</span>
+          <div>
+            <h3>2026 内容生态白皮书发布</h3>
+            <p>完整梳理平台一年来的内容结构、创作者成长路径与版权保护实践，可在帮助中心下载高清版本。</p>
+          </div>
+        </div>
+        <div class="tsxh-tl-item">
+          <span class="tsxh-tl-date">2026.11.08</span>
+          <div>
+            <h3>创作者扶持计划第三期名单公示</h3>
+            <p>本期共 24 位创作者入选，将获得拍摄设备支持、剪辑工具包与官方推广位资源，扶持周期为六个月。</p>
+          </div>
+        </div>
+        <div class="tsxh-tl-item">
+          <span class="tsxh-tl-date">2026.10.30</span>
+          <div>
+            <h3>专题《一座城的十二个时辰》第十一期上线</h3>
+            <p>本期聚焦城市凌晨四点的环卫工人与早市摊主，由三位在地创作者联合完成拍摄。</p>
+          </div>
+        </div>
+        <div class="tsxh-tl-item">
+          <span class="tsxh-tl-date">2026.10.22</span>
+          <div>
+            <h3>评论区社区公约更新</h3>
+            <p>新增对创作者隐私的保护条款，并优化举报反馈流程，用户可在任意作品页提交反馈。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="tsxh-section-head" style="margin-bottom:24px">
+        <span class="tsxh-eyebrow">合作品牌</span>
+        <h2 class="tsxh-h2">一起把故事 <em>做得更好</em></h2>
+        <p class="tsxh-lead">我们在品牌故事、社会责任影像与内容共创上与多家伙伴长期合作。</p>
+      </div>
+      <div class="tsxh-partner-wall">
+        <div class="tsxh-partner">海岸线影像<small>内容共创伙伴</small></div>
+        <div class="tsxh-partner">纸间书店<small>线下放映合作</small></div>
+        <div class="tsxh-partner">慢慢咖啡<small>品牌故事定制</small></div>
+        <div class="tsxh-partner">青禾计划<small>公益影像支持</small></div>
+        <div class="tsxh-partner">微光相机<small>设备支持伙伴</small></div>
+        <div class="tsxh-partner">山野营地<small>户外企划合作</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="tsxh-section" id="tsxhFaq" style="padding-top:0">
+  <div class="tsxh-section-head">
+    <span class="tsxh-eyebrow">帮助中心</span>
+    <h2 class="tsxh-h2">关于 <em>推特小小绘</em> 的常见问题</h2>
+    <p class="tsxh-lead">如果没有找到答案，欢迎通过页面底部的联系方式与我们沟通。</p>
+  </div>
+  <div class="tsxh-faq-grid">
+    <details class="tsxh-faq-item">
+      <summary>如何成为平台的签约创作者？</summary>
+      <p>你可以在「联系我们」处提交投稿入口，附上 1 至 3 部原创作品链接和简短的创作自述。编辑团队会在 7 个工作日内回复，通过后会进入试运营期，期间可获得选题与剪辑方面的支持。</p>
+    </details>
+    <details class="tsxh-faq-item">
+      <summary>作品上传对画质和格式有什么要求？</summary>
+      <p>建议使用 1080P 及以上分辨率，横屏与竖屏均可，常见视频格式均可上传。我们会对画面进行统一转码，以确保不同设备上的观看体验一致。音频建议采用清晰人声，避免过度压缩。</p>
+    </details>
+    <details class="tsxh-faq-item">
+      <summary>平台如何保护原创作者的版权？</summary>
+      <p>所有上线作品均会记录作者信息与发布时间，平台对搬运、二次剪辑等行为设有明确的处理规则。作者可在作品页发起版权反馈，我们会在核实后第一时间处理，并对首发原创内容给予额外推荐权重。</p>
+    </details>
+    <details class="tsxh-faq-item">
+      <summary>专题企划是如何发起的？我可以参与吗？</summary>
+      <p>专题由编辑团队根据社区讨论与内容趋势发起，同时也会公开征集参与者。你可以在企业动态中关注最新企划的报名信息，或在投稿时注明希望参与的题材方向，我们会根据作品与企划的匹配度发出邀请。</p>
+    </details>
+    <details class="tsxh-faq-item">
+      <summary>我可以下载自己的作品吗？</summary>
+      <p>可以。作者本人可在个人中心获取自己作品的高清版本。其他用户如需引用，请遵守平台的内容使用规范，并注明作者与来源，商业用途需提前获得作者与平台的书面授权。</p>
+    </details>
+    <details class="tsxh-faq-item">
+      <summary>评论区的反馈如何被看到？</summary>
+      <p>每条作品页都设有反馈入口，用户的举报与建议会进入审核队列，由专人跟进。我们也会定期在社区公约更新中回应共性问题，所有处理结果都会以站内通知的形式告知提交者。</p>
+    </details>
+    <details class="tsxh-faq-item">
+      <summary>平台是否接受品牌合作与定制拍摄？</summary>
+      <p>接受。我们提供品牌故事短片、社会责任影像、线下放映与内容共创等多种合作形式。你可以通过页面底部的联系信息与我们沟通需求，团队会根据品牌调性与内容方向给出方案建议。</p>
+    </details>
+    <details class="tsxh-faq-item">
+      <summary>推特小小绘与其他影像平台有什么不同？</summary>
+      <p>我们更关注「慢」和「真」。不追求高频产出，而是希望每一部被推荐的作品都经得起反复观看。平台坚持原创优先、高清标准与社区共治，把创作者与观众的长期信任放在短期流量之前。</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="tsxhContact" style="padding-bottom:20px">
+  <div class="tsxh-cta-band">
+    <div>
+      <span class="tsxh-eyebrow" style="color:#ffb35c">联系我们</span>
+      <h2>有故事想拍下来？<br>推特小小绘 一直在听</h2>
+      <p>无论是投稿、品牌合作，还是对平台有任何建议，都欢迎直接联系我们。每一封来信都会有人认真阅读。</p>
+      <div class="tsxh-cta-actions">
+        <button class="tsxh-btn ttsxh-btn-warn" data-tsxh-modal="submit">打开投稿入口</button>
+        <button class="tsxh-btn ttsxh-btn-line" style="background:transparent;color:#f3efe9;border-color:rgba(255,255,255,.28)" data-tsxh-modal="share">分享本页</button>
+        <button class="tsxh-btn ttsxh-btn-line" style="background:transparent;color:#f3efe9;border-color:rgba(255,255,255,.28)" data-tsxh-modal="feedback">意见反馈</button>
+      </div>
+    </div>
+    <ul class="tsxh-cta-info">
+      <li><span>合作邮箱：<b>hello@xiaoxiao-hui.example</b></span></li>
+      <li><span>投稿咨询：<b>create@xiaoxiao-hui.example</b></span></li>
+      <li><span>线下地址：<b>城市影像中心 · 三层创作空间</b></span></li>
+      <li><span>工作时间：<b>周一至周五 10:00 - 19:00</b></span></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="tsxh-footer">
+  <div class="tsxh-footer-inner">
+    <div class="tsxh-footer-grid">
+      <div class="tsxh-footer-brand">
+        <strong>推特小小绘 · 官方网站</strong>
+        <p>专注生活影像的原创内容平台与创作社区。我们以真实、温暖、陪伴为价值主张，持续运营高品质内容生态，让值得被看见的生活被认真记录。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <div class="tsxh-footer-links">
+          <a href="#tsxhFocus">焦点影像</a>
+          <a href="#tsxhWall">热门视频流</a>
+          <a href="#tsxhTopics">专题企划</a>
+          <a href="#tsxhCreators">创作者矩阵</a>
+        </div>
+      </div>
+      <div>
+        <h4>关于平台</h4>
+        <div class="tsxh-footer-links">
+          <a href="#tsxhAbout">品牌定位与解析</a>
+          <a href="#tsxhUpdates">企业动态</a>
+          <a href="#tsxhReviews">社区口碑</a>
+          <a href="#tsxhFaq">帮助中心</a>
+        </div>
+      </div>
+      <div>
+        <h4>参与共创</h4>
+        <div class="tsxh-footer-links">
+          <a href="#tsxhContact">投稿入口</a>
+          <a href="#tsxhContact">品牌合作</a>
+          <a href="#tsxhFaq">版权说明</a>
+          <a href="#tsxhContact">意见反馈</a>
+        </div>
+      </div>
+    </div>
+    <div class="tsxh-footer-bottom">
+      <span>© 2026 推特小小绘 官方网站 · 版权所有 · 持续运营中</span>
+      <span>原创内容平台 · 尊重版权 · 用户至上</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ TOAST ============ -->
+<div class="tsxh-toast" id="tsxhToast" role="status" aria-live="polite"></div>
+
+<!-- ============ MODAL ============ -->
+<div class="tsxh-modal" id="tsxhModal" role="dialog" aria-modal="true" aria-labelledby="tsxhModalTitle">
+  <div class="tsxh-modal-box">
+    <h3 id="tsxhModalTitle">提示</h3>
+    <p id="tsxhModalDesc"></p>
+    <div class="tsxh-modal-field" id="tsxhModalField">
+      <input type="text" id="tsxhModalInput" placeholder="请输入内容">
+    </div>
+    <button class="tsxh-btn ttsxh-btn-primary ttsxh-btn-primary" style="width:100%;justify-content:center" id="tsxhModalOk">确定</button>
+    <button class="tsxh-modal-close" id="tsxhModalClose">关闭</button>
+  </div>
+</div>
+
+<button class="tsxh-backtop" id="tsxhBackTop" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  "use strict";
+
+  var toastEl = document.getElementById('tsxhToast');
+  var toastTimer = null;
+  function showToast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2200);
+  }
+  window.tsxhToast = showToast;
+
+  /* ---------- announcement rotation ---------- */
+  var announceList = document.getElementById('tsxhAnnounceList');
+  var announceItems = announceList ? announceList.children.length : 0;
+  var announceIdx = 0;
+  if(announceItems > 1){
+    setInterval(function(){
+      announceIdx = (announceIdx + 1) % announceItems;
+      announceList.style.transform = 'translateY(-' + (announceIdx * 100) + '%)';
+    }, 4200);
+  }
+
+  /* ---------- header shadow + backtop ---------- */
+  var header = document.getElementById('tsxhHeader');
+  var backTop = document.getElementById('tsxhBackTop');
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    if(header) header.classList.toggle('scrolled', y > 10);
+    if(backTop) backTop.classList.toggle('show', y > 520);
+  }, {passive:true});
+  if(backTop){
+    backTop.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  /* ---------- mobile nav ---------- */
+  var burger = document.getElementById('tsxhBurger');
+  var mobileNav = document.getElementById('tsxhMobileNav');
+  if(burger && mobileNav){
+    burger.addEventListener('click', function(){
+      var open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mobileNav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* ---------- nav active on scroll ---------- */
+  var navLinks = document.querySelectorAll('.tsxh-nav a');
+  var sectionIds = ['tsxhTop','tsxhFocus','tsxhWall','tsxhCreators','tsxhUpdates','tsxhFaq','tsxhContact'];
+  window.addEventListener('scroll', function(){
+    var y = (window.scrollY || document.documentElement.scrollTop) + 140;
+    var current = 'tsxhTop';
+    sectionIds.forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.offsetTop <= y) current = id;
+    });
+    navLinks.forEach(function(a){
+      var href = a.getAttribute('href');
+      a.classList.toggle('is-active', href === '#' + current);
+    });
+  }, {passive:true});
+
+  /* ---------- search feedback ---------- */
+  var searchForm = document.getElementById('tsxhSearchForm');
+  var searchInput = document.getElementById('tsxhSearchInput');
+  var searchBtn = document.getElementById('tsxhSearchBtn');
+  function doSearch(){
+    var q = (searchInput.value || '').trim();
+    if(!q){
+      showToast('请输入想查找的影像、创作者或专题');
+      searchInput.focus();
+      return;
+    }
+    showToast('已为你筛选「' + q + '」相关内容，社区共有 36 部作品');
+    searchInput.blur();
+  }
+  if(searchBtn) searchBtn.addEventListener('click', doSearch);
+  if(searchForm){
+    searchForm.addEventListener('submit', function(e){ e.preventDefault(); doSearch(); });
+  }
+  if(searchInput){
+    searchInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); doSearch(); }
+    });
+  }
+
+  /* ---------- likes & saves ---------- */
+  document.querySelectorAll('[data-tsxh-like]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var b = btn.querySelector('b');
+      var num = b ? parseInt(b.textContent.replace(/,/g,''), 10) || 0 : 0;
+      if(btn.classList.contains('is-liked')){
+        btn.classList.remove('is-liked');
+        if(b) b.textContent = (num - 1).toLocaleString('en-US');
+        showToast('已取消喜欢');
+      } else {
+        btn.classList.add('is-liked');
+        if(b) b.textContent = (num + 1).toLocaleString('en-US');
+        showToast('已表达喜欢，感谢你的反馈');
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-tsxh-save]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var saved = btn.classList.toggle('is-saved');
+      btn.textContent = saved ? '★' : '☆';
+      showToast(saved ? '已收藏到「我的片单」' : '已从片单中移除');
+    });
+  });
+
+  /* ---------- copy link ---------- */
+  document.querySelectorAll('[data-tsxh-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var url = 'https://xiaoxiao-hui.example/explore';
+      var done = function(){ showToast('链接已复制，可分享给同好'); };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(done).catch(function(){
+          fallbackCopy(url); done();
+        });
+      } else {
+        fallbackCopy(url); done();
+      }
+    });
+  });
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  /* ---------- author modal ---------- */
+  document.querySelectorAll('[data-tsxh-author]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var name = btn.getAttribute('data-tsxh-author');
+      openModal('创作者档案 · ' + name,
+        name + ' 是平台签约创作者，目前已发布多部原创影像作品，擅长用平实的镜头记录生活细节。你可以通过作品页关注他/她，或查看其最新创作手记。',
+        null);
+    });
+  });
+
+  /* ---------- idea chips ---------- */
+  document.querySelectorAll('[data-tsxh-idea]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var idea = btn.getAttribute('data-tsxh-idea');
+      showToast('已把灵感「' + idea + '」加入你的选题清单');
+    });
+  });
+
+  /* ---------- modal ---------- */
+  var modal = document.getElementById('tsxhModal');
+  var modalTitle = document.getElementById('tsxhModalTitle');
+  var modalDesc = document.getElementById('tsxhModalDesc');
+  var modalField = document.getElementById('tsxhModalField');
+  var modalInput = document.getElementById('tsxhModalInput');
+  var modalOk = document.getElementById('tsxhModalOk');
+  var modalClose = document.getElementById('tsxhModalClose');
+
+  function openModal(title, desc, placeholder){
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+    if(placeholder){
+      modalField.style.display = 'flex';
+      modalInput.value = '';
+      modalInput.placeholder = placeholder;
+    } else {
+      modalField.style.display = 'none';
+    }
+    modal.classList.add('show');
+    if(placeholder) setTimeout(function(){ modalInput.focus(); }, 60);
+  }
+  function closeModal(){
+    modal.classList.remove('show');
+  }
+
+  document.querySelectorAll('[data-tsxh-modal]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var type = btn.getAttribute('data-tsxh-modal');
+      if(type === 'share'){
+        var shareUrl = 'https://xiaoxiao-hui.example/explore';
+        var done = function(){ showToast('页面链接已复制，可分享到微信 / 微博 / QQ'); };
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(shareUrl).then(done).catch(function(){ fallbackCopy(shareUrl); done(); });
+        } else { fallbackCopy(shareUrl); done(); }
+      } else if(type === 'submit'){
+        openModal('投稿入口', '请留下你的作品链接或联系方式，编辑团队会在 7 个工作日内与你联系。', '例如：作品链接 / 邮箱');
+      } else if(type === 'feedback'){
+        openModal('意见反馈', '请描述你遇到的问题或建议，我们会认真阅读每一条反馈。', '写下你的建议…');
+      }
+    });
+  });
+
+  if(modalOk){
+    modalOk.addEventListener('click', function(){
+      var val = modalInput.value.trim();
+      if(modalField.style.display !== 'none'){
+        if(!val){
+          showToast('请先填写内容后再提交');
+          modalInput.focus();
+          return;
+        }
+        closeModal();
+        showToast('已提交，感谢你的参与，我们会尽快处理');
+      } else {
+        closeModal();
+      }
+    });
+  }
+  if(modalClose) modalClose.addEventListener('click', closeModal);
+  if(modal){
+    modal.addEventListener('click', function(e){
+      if(e.target === modal) closeModal();
+    });
+  }
+  if(modalInput){
+    modalInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); modalOk.click(); }
+    });
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+  });
+
+  /* ---------- smooth anchor offset handled by CSS scroll-margin ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var id = a.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if(target){
+        e.preventDefault();
+        var sticky = document.querySelector('.tsxh-sticky-head');
+        var offset = sticky ? sticky.offsetHeight : 0;
+        var top = target.getBoundingClientRect().top + (window.scrollY || window.pageYOffset) - offset - 12;
+        window.scrollTo({top: top, behavior:'smooth'});
+      }
+    });
+  });
+})();
+</script>
+</body>
+          </html>
